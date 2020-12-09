@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Administrator;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
+use File;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -117,7 +118,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::findOrFail($id)->delete();
+        $user = User::findOrFail($id);
+
+        if (File::exists(public_path($user->photo))) {
+            File::delete(public_path($user->photo));
+        }
+
+        $user->delete();
 
         return redirect()->route('admin.pengguna.index')->with('success', 'Data pengguna berhasil dihapus!');
     }
