@@ -11,7 +11,7 @@
                     </button>
                 </div>
             </div>
-            <table id="datatable" class="table table-striped table-bordered table-responsive">
+            <table id="datatable" class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th>ID Pengguna</th>

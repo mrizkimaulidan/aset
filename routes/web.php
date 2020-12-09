@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Administrator\UserController;
 use App\Http\Controllers\Administrator\CommodityCategoryController;
+use App\Http\Controllers\Administrator\CommodityController;
 use App\Http\Controllers\Administrator\CommodityLocationController;
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ Route::name('admin.')->group(function () {
     Route::resource('/pengguna', UserController::class);
     Route::resource('/jenis-aset', CommodityCategoryController::class);
     Route::resource('/ruangan', CommodityLocationController::class);
+    Route::resource('/aset', CommodityController::class);
 
     Route::get('/jenis-aset/json/{id}', [App\Http\Controllers\Administrator\Json\CommodityCategoryController::class, 'show']);
     Route::get('/ruangan/json/{id}', [App\Http\Controllers\Administrator\Json\CommodityLocationController::class, 'show']);
