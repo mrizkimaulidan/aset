@@ -1,7 +1,10 @@
-@extends('layouts.app', ['section_header' => 'Edit'])
+@extends('layouts.app', ['title' => 'Halaman Edit Pengguna', 'section_header' => 'Edit ' . $user->name])
 
 @section('content')
 <div class="row">
+    <div class="col-lg-12">
+        @include('utilities.flash-messages')
+    </div>
     <div class="col-lg-6">
         <div class="card">
             <form action="{{ route('admin.pengguna.update', $user->id) }}" method="POST" enctype="multipart/form-data">
