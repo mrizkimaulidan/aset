@@ -22,6 +22,7 @@ class CreateCommoditiesTable extends Migration
             $table->string('name');
             $table->bigInteger('amount');
             $table->date('register_date');
+            $table->date('update_date');
             $table->string('condition');
             $table->timestamps();
         });

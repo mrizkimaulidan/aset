@@ -47,6 +47,7 @@ class CommoditySeeder extends Seeder
                 'name' => $commodities[$i],
                 'amount' => mt_rand(5, 10),
                 'register_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 12), mt_rand(1, 31)),
+                'update_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 12), mt_rand(1, 31)),
                 'condition' => $conditions[mt_rand(0, count($conditions) - 1)]
             ]);
         }
