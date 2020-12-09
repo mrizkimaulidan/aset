@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    protected $fileUpload;
+
+    public function __construct(FileUploadController $fileUpload)
+    {
+        $this->fileUpload = $fileUpload;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -40,7 +47,16 @@ class UserController extends Controller
      */
     public function store(Request $request, User $user)
     {
-        $user->create($request->all());
+        $user = new User();
+        $user->role_id = $request->role_id;
+        $user->unique_user_number = $request->unique_user_number;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->gender = $request->gender;
+        $user->phone_number = $request->phone_number;
+        $user->photo = $this->fileUpload->uploadProfilePicture($request);
+        $user->password = $request->password;
+        $user->save();
 
         return redirect()->route('admin.pengguna.index')->with('success', 'Data pengguna berhasil ditambahkan!');
     }
@@ -86,7 +102,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->gender = $request->gender;
         $user->phone_number = $request->phone_number;
-        $user->photo = $request->photo;
+        $user->photo = $this->fileUpload->uploadProfilePicture($request);
         $user->password = $request->password;
         $user->save();
 

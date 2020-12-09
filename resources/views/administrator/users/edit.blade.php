@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-lg-6">
         <div class="card">
-            <form action="{{ route('admin.pengguna.update', $user->id) }}" method="POST">
+            <form action="{{ route('admin.pengguna.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                 @method('PATCH')
                 @csrf
                 <table class="table">
