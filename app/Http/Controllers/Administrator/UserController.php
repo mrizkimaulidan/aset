@@ -97,13 +97,23 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
+
+        if (!empty($request->file('photo'))) {
+            if (File::exists(public_path($user->photo))) {
+                File::delete(public_path($user->photo));
+            }
+        }
+
+        if ($request->file('photo') !== null) {
+            $user->photo = $this->fileUpload->uploadProfilePicture($request);
+        }
+
         $user->role_id = $request->role_id;
         $user->unique_user_number = $request->unique_user_number;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->gender = $request->gender;
         $user->phone_number = $request->phone_number;
-        $user->photo = $this->fileUpload->uploadProfilePicture($request);
         $user->password = $request->password;
         $user->save();
 
