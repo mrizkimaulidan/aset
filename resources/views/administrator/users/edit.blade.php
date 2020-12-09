@@ -105,8 +105,8 @@
                     <td>:</td>
                     <td class="text-wrap">
                         <div class="custom-file mb-3">
-                            <input type="file" class="custom-file-input" name="photo" id="photo" required>
-                            <label class="custom-file-label">Choose file...</label>
+                            <input type="file" class="custom-file-input" name="photo" id="photo">
+                            <label class=" custom-file-label">Choose file...</label>
                         </div>
 
                         @if($errors->has('photo'))
