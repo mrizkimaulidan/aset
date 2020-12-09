@@ -32,7 +32,9 @@
                         <td>{{ $user->gender }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone_number }}</td>
-                        <td>{{ $user->photo }}</td>
+                        <td>
+                            <img src="{{ $user->photo }}" class="img-thumbnail" alt="{{ $user->name }}">
+                        </td>
                         <td>{{ $user->roles->name }}</td>
                         <td>
                             <div class="btn-group btn-group-justified">
