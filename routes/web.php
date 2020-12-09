@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Administrator\UserController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Administrator\UserController;
+use App\Http\Controllers\Administrator\CommodityCategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,4 +24,7 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 
 Route::name('admin.')->group(function () {
     Route::resource('/pengguna', UserController::class);
+    Route::resource('/jenis-aset', CommodityCategoryController::class);
+
+    Route::get('/jenis-aset/json/{id}', [App\Http\Controllers\Administrator\Json\CommodityCategoryController::class, 'show']);
 });
