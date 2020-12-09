@@ -35,7 +35,19 @@
                         <td>{{ $commodity->commodity_locations->name }}</td>
                         <td>{{ $commodity->amount }}</td>
                         <td>{{ $commodity->register_date }}</td>
-                        <td>{{ $commodity->condition }}</td>
+                        @if($commodity->condition === 'Sudah Layak')
+                        <td>
+                            <span class="badge badge-pill badge-success" data-toggle="tooltip" data-placement="top" title="Sudah Layak">Sudah Layak</span>
+                        </td>
+                        @elseif($commodity->condition === 'Layak Sebagian')
+                        <td>
+                            <span class="badge badge-pill badge-warning" data-toggle="tooltip" data-placement="top" title="Layak Sebagian">Layak Sebagian</span>
+                        </td>
+                        @else
+                        <td>
+                            <span class="badge badge-pill badge-danger" data-toggle="tooltip" data-placement="top" title="Tidak Layak">Tidak Layak</span>
+                        </td>
+                        @endif
                         <td>{{ $commodity->update_date }}</td>
                         <td>{{ $commodity->users->name }}</td>
                         <td>
