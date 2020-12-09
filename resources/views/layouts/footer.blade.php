@@ -1,9 +1,9 @@
 <footer class="main-footer">
-    <div class="footer-left">
-        Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a>
+    <div class="footer-left font-weight-bold">
+        Aplikasi {{ config('app.name') }}
     </div>
     <div class="footer-right">
-        2.3.0
+        {{ date('Y') }}
     </div>
 </footer>
 </div>
