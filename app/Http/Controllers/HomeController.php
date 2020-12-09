@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commodity;
+use App\Models\CommodityCategory;
+use App\Models\CommodityLocation;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +27,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $users = User::with('roles')->get();
+        $commodity_categories = CommodityCategory::get();
+        $commodity_locations = CommodityLocation::get();
+        $commodities = Commodity::with('commodity_categories', 'commodity_locations', 'users')->get();
+
+        return view('home', compact('users', 'commodity_categories', 'commodity_locations', 'commodities'));
     }
 }

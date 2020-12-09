@@ -12,7 +12,7 @@
                     <h4>Jumlah Pengguna</h4>
                 </div>
                 <div class="card-body">
-                    10
+                    {{ count($users) }}
                 </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
                     <h4>Jenis Aset</h4>
                 </div>
                 <div class="card-body">
-                    42
+                    {{ count($commodity_categories) }}
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                     <h4>Jumlah Ruangan</h4>
                 </div>
                 <div class="card-body">
-                    1,201
+                    {{ count($commodity_locations) }}
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
                     <h4>Jumlah Aset</h4>
                 </div>
                 <div class="card-body">
-                    47
+                    {{ count($commodities) }}
                 </div>
             </div>
         </div>
