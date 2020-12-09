@@ -13,7 +13,7 @@
     <li class="menu-header">Halaman</li>
     <li class="{{ request()->routeIs('admin.pengguna.*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.pengguna.index') }}"><i class="fas fa-users"></i> <span>Data Pengguna</span></a></li>
     <li class="{{ request()->routeIs('admin.jenis-aset.*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.jenis-aset.index') }}"><i class="fas fa-th-large"></i> <span>Jenis Aset</span></a></li>
-    <li><a class="nav-link" href="blank.html"><i class="fas fa-map-marker-alt"></i> <span>Ruangan</span></a></li>
+    <li class="{{ request()->routeIs('admin.ruangan.*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.ruangan.index') }}"><i class="fas fa-map-marker-alt"></i> <span>Ruangan</span></a></li>
     <li><a class="nav-link" href="blank.html"><i class="fas fa-boxes"></i> <span>Data Aset</span></a></li>
     <li><a class="nav-link" href="blank.html"><i class="fas fa-table"></i> <span>Laporan</span></a></li>
     </li>
