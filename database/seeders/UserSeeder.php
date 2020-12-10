@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'gender' => 'Laki-laki',
             'phone_number' => '+628' . mt_rand(100, 400) . mt_rand(500, 700) . mt_rand(1000, 9000),
-            'photo' => 'assets/profile/image.jpg',
+            'photo' => 'assets/profile/default.jpg',
             'password' => bcrypt('secret'),
             'remember_token' => Str::random(10)
         ]);
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'gender' => 'Laki-laki',
             'phone_number' => '+628' . mt_rand(100, 400) . mt_rand(500, 700) . mt_rand(1000, 9000),
-            'photo' => 'assets/profile/image.jpg',
+            'photo' => 'assets/profile/default.jpg',
             'password' => bcrypt('secret'),
             'remember_token' => Str::random(10)
         ]);
@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'gender' => 'Laki-laki',
             'phone_number' => '+628' . mt_rand(100, 400) . mt_rand(500, 700) . mt_rand(1000, 9000),
-            'photo' => 'assets/profile/image.jpg',
+            'photo' => 'assets/profile/default.jpg',
             'password' => bcrypt('secret'),
             'remember_token' => Str::random(10)
         ]);
