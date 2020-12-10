@@ -641,4 +641,14 @@ $(function() {
                 }
             });
         });
+        
+        $('.show-password').on('click', function () {
+        if ($('#password').attr('type') === 'password') {
+            $('#password').attr('type', 'text')
+            $('#eye').attr('class', 'fas fa-eye-slash')
+        } else {
+            $('#password').attr('type', 'password')
+            $('#eye').attr('class', 'fas fa-eye')
+        }
+    });
 });

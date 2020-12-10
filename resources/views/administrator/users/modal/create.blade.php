@@ -45,8 +45,15 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="name">Password</label>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan password..">
+                                <label for="password">Password</label>
+                                <div class="input-group mb-3">
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan password..">
+                                    <div class="input-group-prepend show-password">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-eye" id="eye"></i>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
