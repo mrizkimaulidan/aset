@@ -71,7 +71,14 @@
                         <td>Password</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="password" value="{{ $user->password }}" required>
+                            <div class="input-group mb-3">
+                                <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="password" value="{{ $user->password }}" placeholder="Masukkan password.." required>
+                                <div class="input-group-prepend show-password">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-eye" id="eye"></i>
+                                    </span>
+                                </div>
+                            </div>
 
                             @if($errors->has('password'))
                             <div class="invalid-feedback font-weight-bold d-block">
