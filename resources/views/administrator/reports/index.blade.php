@@ -7,8 +7,10 @@
         <div class="card px-3 py-3 table-reponsive">
             <div class="row">
                 <div class="col-lg-12 px-3 py-3 text-right">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filterModal">
-                        <i class="fas fa-print"></i>
+                    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Print">
+                        <span data-toggle="modal" data-target="#filterModal">
+                            <i class="fas fa-print"></i>
+                        </span>
                     </button>
 
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addReportModal">
