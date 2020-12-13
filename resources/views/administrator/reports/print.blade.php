@@ -34,17 +34,19 @@
                 <td align="center">Tanggal Update</td>
                 <td align="center">User</td>
             </tr>
+            @foreach($commodities as $key => $commodity)
             <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td>{{ $commodity->unique_commodity_number }}</td>
+                <td>{{ $commodity->name }}</td>
+                <td>{{ $commodity->commodity_categories->name }}</td>
+                <td>{{ $commodity->commodity_locations->name }}</td>
+                <td>{{ $commodity->amount }}</td>
+                <td>{{ $commodity->register_date }}</td>
+                <td>{{ $commodity->condition }}</td>
+                <td>{{ $commodity->update_date }}</td>
+                <td>{{ $commodity->users->name }}</td>
             </tr>
+            @endforeach
         </tbody>
     </table>
     <br>
