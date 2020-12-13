@@ -41,9 +41,9 @@
                 <td>{{ $commodity->commodity_categories->name }}</td>
                 <td>{{ $commodity->commodity_locations->name }}</td>
                 <td>{{ $commodity->amount }}</td>
-                <td>{{ $commodity->register_date }}</td>
+                <td>{{ indonesian_date_format($commodity->register_date) }}</td>
                 <td>{{ $commodity->condition }}</td>
-                <td>{{ $commodity->update_date }}</td>
+                <td>{{ indonesian_date_format($commodity->update_date) }}</td>
                 <td>{{ $commodity->users->name }}</td>
             </tr>
             @endforeach

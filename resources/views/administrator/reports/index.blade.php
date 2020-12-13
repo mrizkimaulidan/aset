@@ -80,7 +80,7 @@
 @endsection
 
 @push('modal')
-@include('administrator.reports.modal.print_year')
+@include('administrator.reports.modal.print')
 @endpush
 
 @push('js')
