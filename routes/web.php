@@ -5,6 +5,7 @@ use App\Http\Controllers\Administrator\UserController;
 use App\Http\Controllers\Administrator\CommodityCategoryController;
 use App\Http\Controllers\Administrator\CommodityController;
 use App\Http\Controllers\Administrator\CommodityLocationController;
+use App\Http\Controllers\Administrator\PrintController;
 use App\Http\Controllers\Administrator\ReportController;
 
 /*
@@ -35,4 +36,6 @@ Route::name('admin.')->group(function () {
 
     Route::get('/jenis-aset/json/{id}', [App\Http\Controllers\Administrator\Json\CommodityCategoryController::class, 'show']);
     Route::get('/ruangan/json/{id}', [App\Http\Controllers\Administrator\Json\CommodityLocationController::class, 'show']);
+
+    Route::get('/laporan/print/{year}', [PrintController::class, 'printByYear'])->name('laporan.print.year');
 });

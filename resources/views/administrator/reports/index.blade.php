@@ -7,6 +7,10 @@
         <div class="card px-3 py-3 table-reponsive">
             <div class="row">
                 <div class="col-lg-12 px-3 py-3 text-right">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filterModal">
+                        <i class="fas fa-print"></i>
+                    </button>
+
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addReportModal">
                         Tambah Data
                     </button>
@@ -74,5 +78,9 @@
 @endsection
 
 @push('modal')
-@include('administrator.commodities.modal.create')
+@include('administrator.reports.modal.print_year')
+@endpush
+
+@push('js')
+@include('administrator.reports._script')
 @endpush
