@@ -12,6 +12,6 @@ class PrintController extends Controller
     {
         $commodities = Commodity::with('commodity_categories', 'commodity_locations')->whereYear('register_date', $year)->orderBy('name', 'asc')->get();
 
-        return view('administrator.reports.print', compact('commodities'));
+        return view('administrator.reports.print', compact('commodities', 'year'));
     }
 }

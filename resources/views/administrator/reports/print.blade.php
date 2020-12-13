@@ -16,7 +16,7 @@
     <table width="90%" border="0" align="center">
         <tr>
             <td>
-                <h4>&nbsp;Hasil Laporan Data Aset Tahun</h4>
+                <h4>&nbsp;Hasil Laporan Data Aset Tahun {{ $year }}</h4>
             </td>
         </tr>
     </table>
