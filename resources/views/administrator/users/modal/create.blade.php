@@ -15,19 +15,21 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="unique_user_number">ID Pengguna</label>
-                                <input type="text" class="form-control" name="unique_user_number" id="unique_user_number" placeholder="Masukkan ID pengguna.." autofocus>
+                                <input type="text" class="form-control" name="unique_user_number"
+                                    id="unique_user_number" placeholder="Masukkan ID pengguna.." autofocus required>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="name">Nama Lengkap</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Masukkan nama lengkap..">
+                                <input type="text" class="form-control" name="name" id="name"
+                                    placeholder="Masukkan nama lengkap.." required>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="gender">Jenis Kelamin</label>
-                                <select class="form-control" name="gender" id="gender">
+                                <select class="form-control" name="gender" id="gender" required>
                                     <option selected>Pilih..</option>
                                     <option value="Laki-laki">Laki-laki</option>
                                     <option value="Perempuan">Perempuan</option>
@@ -40,14 +42,16 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan email..">
+                                <input type="email" class="form-control" name="email" id="email"
+                                    placeholder="Masukkan email.." required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <div class="input-group mb-3">
-                                    <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan password..">
+                                    <input type="password" class="form-control" name="password" id="password"
+                                        placeholder="Masukkan password.." required>
                                     <div class="input-group-prepend show-password">
                                         <span class="input-group-text">
                                             <i class="fas fa-eye" id="eye"></i>
@@ -62,7 +66,8 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="phone_number">Nomor Telepon</label>
-                                <input type="text" class="form-control" name="phone_number" id="phone_number" placeholder="Masukkan nomor telepon..">
+                                <input type="text" class="form-control" name="phone_number" id="phone_number"
+                                    placeholder="Masukkan nomor telepon.." required>
                             </div>
                         </div>
                     </div>
@@ -81,7 +86,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="role_id">Jabatan</label>
-                                <select class="form-control" name="role_id" id="role_id">
+                                <select class="form-control" name="role_id" id="role_id" required>
                                     <option selected>Pilih..</option>
                                     @foreach($roles as $key => $role)
                                     <option value="{{ $role->id }}">{{ $role->name }}</option>

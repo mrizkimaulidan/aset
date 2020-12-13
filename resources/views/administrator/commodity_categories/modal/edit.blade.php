@@ -1,5 +1,6 @@
 <!-- Modal -->
-<div class="modal fade" id="editCommodityCategoryModal" tabindex="-1" aria-labelledby="editCommodityCategoryLabel" aria-hidden="true">
+<div class="modal fade" id="editCommodityCategoryModal" tabindex="-1" aria-labelledby="editCommodityCategoryLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,7 +17,8 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="name_edit">Nama</label>
-                                <input type="text" class="form-control" name="name_edit" id="name_edit" placeholder="Masukkan nama.." autofocus>
+                                <input type="text" class="form-control" name="name_edit" id="name_edit"
+                                    placeholder="Masukkan nama.." autofocus required>
                             </div>
                         </div>
                     </div>
@@ -25,7 +27,8 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="description_edit">Keterangan</label>
-                                <textarea class="form-control" name="description_edit" id="description_edit" cols="30" rows="10" placeholder="Masukkan keterangan.."></textarea>
+                                <textarea class="form-control" name="description_edit" id="description_edit" cols="30"
+                                    rows="10" placeholder="Masukkan keterangan.."></textarea>
                             </div>
                         </div>
                     </div>

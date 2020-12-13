@@ -15,7 +15,10 @@
                         <td style="width: 145px;">ID Pengguna</td>
                         <td style="width: 10px;">:</td>
                         <td class="text-wrap">
-                            <input type="text" class="form-control{{ $errors->has('unique_user_number') ? ' is-invalid' : '' }}" name="unique_user_number" id="unique_user_number" value="{{ $user->unique_user_number }}" required>
+                            <input type="text"
+                                class="form-control{{ $errors->has('unique_user_number') ? ' is-invalid' : '' }}"
+                                name="unique_user_number" id="unique_user_number"
+                                value="{{ $user->unique_user_number }}" required>
 
                             @if($errors->has('unique_user_number'))
                             <div class="invalid-feedback font-weight-bold d-block">
@@ -28,7 +31,8 @@
                         <td>Nama Lengkap</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <input type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="name" value="{{ $user->name }}" required>
+                            <input type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                name="name" id="name" value="{{ $user->name }}" required>
 
                             @if($errors->has('name'))
                             <div class="invalid-feedback font-weight-bold d-block">
@@ -43,8 +47,10 @@
                         <td class="text-wrap">
                             <select class="form-control select2-select" name="gender" id="gender" required>
                                 <option selected>Pilih..</option>
-                                <option value="Laki-laki" {{ $user->gender === 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                                <option value="Perempuan" {{ $user->gender === 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                <option value="Laki-laki" {{ $user->gender === 'Laki-laki' ? 'selected' : '' }}>
+                                    Laki-laki</option>
+                                <option value="Perempuan" {{ $user->gender === 'Perempuan' ? 'selected' : '' }}>
+                                    Perempuan</option>
                             </select>
 
                             @if($errors->has('gender'))
@@ -58,7 +64,8 @@
                         <td>Email</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="email" value="{{ $user->email }}" required>
+                            <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                name="email" id="email" value="{{ $user->email }}" required>
 
                             @if($errors->has('email'))
                             <div class="invalid-feedback font-weight-bold d-block">
@@ -72,7 +79,10 @@
                         <td>:</td>
                         <td class="text-wrap">
                             <div class="input-group mb-3">
-                                <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="password" value="{{ $user->password }}" placeholder="Masukkan password.." required>
+                                <input type="password"
+                                    class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                    name="password" id="password" value="{{ $user->password }}"
+                                    placeholder="Masukkan password.." required>
                                 <div class="input-group-prepend show-password">
                                     <span class="input-group-text">
                                         <i class="fas fa-eye" id="eye"></i>
@@ -98,7 +108,8 @@
                     <td style="width: 145px;">Nomor Telepon</td>
                     <td style="width: 10px;">:</td>
                     <td class="text-wrap">
-                        <input type="text" class="form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" id="phone_number" value="{{ $user->phone_number }}" required>
+                        <input type="text" class="form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}"
+                            name="phone_number" id="phone_number" value="{{ $user->phone_number }}" required>
 
                         @if($errors->has('phone_number'))
                         <div class="invalid-feedback font-weight-bold d-block">
@@ -130,7 +141,8 @@
                         <select class="form-control select2-select" name="role_id" id="role_id" required>
                             <option selected>Pilih..</option>
                             @foreach($roles as $key => $role)
-                            <option value="{{ $role->id }}" {{ $user->role_id === $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
+                            <option value="{{ $role->id }}" {{ $user->role_id === $role->id ? 'selected' : '' }}>
+                                {{ $role->name }}</option>
                             @endforeach
                         </select>
 
