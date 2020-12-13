@@ -15,7 +15,7 @@
     <li class="{{ request()->routeIs('admin.jenis-aset.*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.jenis-aset.index') }}"><i class="fas fa-th-large"></i> <span>Jenis Aset</span></a></li>
     <li class="{{ request()->routeIs('admin.ruangan.*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.ruangan.index') }}"><i class="fas fa-map-marker-alt"></i> <span>Ruangan</span></a></li>
     <li class="{{ request()->routeIs('admin.aset.*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.aset.index') }}"><i class="fas fa-boxes"></i> <span>Data Aset</span></a></li>
-    <li><a class="nav-link" href="blank.html"><i class="fas fa-table"></i> <span>Laporan</span></a></li>
+    <li class="{{ request()->routeIs('admin.laporan.*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.laporan.index') }}"><i class="fas fa-table"></i> <span>Laporan</span></a></li>
     </li>
   </ul>
 
