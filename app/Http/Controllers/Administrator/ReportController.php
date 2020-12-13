@@ -18,7 +18,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $commodities = Commodity::with('commodity_categories', 'commodity_locations')->orderBy('name', 'asc')->get();
+        $commodities = Commodity::with('commodity_categories', 'commodity_locations')->whereYear('register_date', date('Y'))->orderBy('name', 'asc')->get();
         $commodity_categories = CommodityCategory::orderBy('name', 'asc')->get();
         $commodity_locations = CommodityLocation::orderBy('name', 'asc')->get();
         $users = User::orderBy('name', 'asc')->get();
