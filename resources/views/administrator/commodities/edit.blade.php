@@ -1,4 +1,4 @@
-@extends('layouts.app', ['section_header' => 'Edit'])
+@extends('layouts.app', ['title' => 'Halaman Edit','section_header' => 'Edit'])
 
 @section('content')
 <div class="row">
@@ -15,7 +15,10 @@
                         <td style="width: 145px;">ID Aset</td>
                         <td style="width: 10px;">:</td>
                         <td class="text-wrap">
-                            <input type="text" class="form-control{{ $errors->has('unique_commodity_number') ? ' is-invalid' : '' }}" name="unique_commodity_number" id="unique_commodity_number" value="{{ $commodity->unique_commodity_number }}" required>
+                            <input type="text"
+                                class="form-control{{ $errors->has('unique_commodity_number') ? ' is-invalid' : '' }}"
+                                name="unique_commodity_number" id="unique_commodity_number"
+                                value="{{ $commodity->unique_commodity_number }}" required>
 
                             @if($errors->has('unique_commodity_number'))
                             <div class="invalid-feedback font-weight-bold d-block">
@@ -28,7 +31,8 @@
                         <td>Nama</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <input type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="name" value="{{ $commodity->name }}" required>
+                            <input type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                name="name" id="name" value="{{ $commodity->name }}" required>
 
                             @if($errors->has('name'))
                             <div class="invalid-feedback font-weight-bold d-block">
@@ -41,7 +45,8 @@
                         <td>Jumlah</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <input type="number" class="form-control" name="amount" id="amount" value="{{ $commodity->amount }}" required>
+                            <input type="number" class="form-control" name="amount" id="amount"
+                                value="{{ $commodity->amount }}" required>
 
                             @if($errors->has('amount'))
                             <div class="invalid-feedback font-weight-bold d-block">
@@ -54,10 +59,13 @@
                         <td>Jenis Aset</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <select class="form-control" name="commodity_category_id" id="commodity_category_id" required>
+                            <select class="form-control" name="commodity_category_id" id="commodity_category_id"
+                                required>
                                 <option selected>Pilih..</option>
                                 @foreach($commodity_categories as $key => $commodity_category)
-                                <option value="{{ $commodity_category->id }}" {{ $commodity->commodity_category_id === $commodity_category->id ? 'selected' : '' }}>{{ $commodity_category->name }}</option>
+                                <option value="{{ $commodity_category->id }}"
+                                    {{ $commodity->commodity_category_id === $commodity_category->id ? 'selected' : '' }}>
+                                    {{ $commodity_category->name }}</option>
                                 @endforeach
                             </select>
 
@@ -72,10 +80,13 @@
                         <td>Ruangan</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <select class="form-control" name="commodity_location_id" id="commodity_location_id" required>
+                            <select class="form-control" name="commodity_location_id" id="commodity_location_id"
+                                required>
                                 <option selected>Pilih..</option>
                                 @foreach($commodity_locations as $key => $commodity_location)
-                                <option value="{{ $commodity_location->id }}" {{ $commodity->commodity_location_id === $commodity_location->id ? 'selected' : '' }}>{{ $commodity_location->name }}</option>
+                                <option value="{{ $commodity_location->id }}"
+                                    {{ $commodity->commodity_location_id === $commodity_location->id ? 'selected' : '' }}>
+                                    {{ $commodity_location->name }}</option>
                                 @endforeach
                             </select>
 
@@ -99,9 +110,13 @@
                     <td class="text-wrap">
                         <select class="form-control" name="condition" id="condition" required>
                             <option selected>Pilih..</option>
-                            <option value="Sudah Layak" {{ $commodity->condition === 'Sudah Layak' ? 'selected' : '' }}>Sudah Layak</option>
-                            <option value="Layak Sebagian" {{ $commodity->condition === 'Layak Sebagian' ? 'selected' : '' }}>Layak Sebagian</option>
-                            <option value="Tidak Layak" {{ $commodity->condition === 'Tidak Layak' ? 'selected' : '' }}>Tidak Layak</option>
+                            <option value="Sudah Layak" {{ $commodity->condition === 'Sudah Layak' ? 'selected' : '' }}>
+                                Sudah Layak</option>
+                            <option value="Layak Sebagian"
+                                {{ $commodity->condition === 'Layak Sebagian' ? 'selected' : '' }}>Layak Sebagian
+                            </option>
+                            <option value="Tidak Layak" {{ $commodity->condition === 'Tidak Layak' ? 'selected' : '' }}>
+                                Tidak Layak</option>
                         </select>
 
                         @if($errors->has('condition'))
@@ -115,7 +130,8 @@
                     <td>Tanggal Register</td>
                     <td>:</td>
                     <td class="text-wrap">
-                        <input type="date" class="form-control" name="register_date" id="register_date" value="{{ $commodity->register_date }}" required>
+                        <input type="date" class="form-control" name="register_date" id="register_date"
+                            value="{{ $commodity->register_date }}" required>
 
                         @if($errors->has('register_date'))
                         <div class="invalid-feedback font-weight-bold d-block">
@@ -128,7 +144,8 @@
                     <td>Tanggal Update</td>
                     <td>:</td>
                     <td class="text-wrap">
-                        <input type="date" class="form-control" name="update_date" id="update_date" value="{{ $commodity->update_date }}" required>
+                        <input type="date" class="form-control" name="update_date" id="update_date"
+                            value="{{ $commodity->update_date }}" required>
 
                         @if($errors->has('update_date'))
                         <div class="invalid-feedback font-weight-bold d-block">
@@ -144,7 +161,8 @@
                         <select class="form-control" name="user_id" id="user_id" required>
                             <option selected>Pilih..</option>
                             @foreach($users as $key => $user)
-                            <option value="{{ $user->id }}" {{ $commodity->user_id === $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
+                            <option value="{{ $user->id }}" {{ $commodity->user_id === $user->id ? 'selected' : '' }}>
+                                {{ $user->name }}</option>
                             @endforeach
                         </select>
 
