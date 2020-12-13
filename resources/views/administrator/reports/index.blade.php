@@ -7,7 +7,8 @@
         <div class="card px-3 py-3 table-reponsive">
             <div class="row">
                 <div class="col-lg-12 px-3 py-3 text-right">
-                    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Print">
+                    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
+                        title="Print">
                         <span data-toggle="modal" data-target="#filterModal">
                             <i class="fas fa-print"></i>
                         </span>
@@ -44,15 +45,18 @@
                         <td>{{ indonesian_date_format($commodity->register_date) }}</td>
                         @if($commodity->condition === 'Sudah Layak')
                         <td>
-                            <span class="badge badge-pill badge-success" data-toggle="tooltip" data-placement="top" title="Sudah Layak">Sudah Layak</span>
+                            <span class="badge badge-pill badge-success" data-toggle="tooltip" data-placement="top"
+                                title="Sudah Layak">Sudah Layak</span>
                         </td>
                         @elseif($commodity->condition === 'Layak Sebagian')
                         <td>
-                            <span class="badge badge-pill badge-warning" data-toggle="tooltip" data-placement="top" title="Layak Sebagian">Layak Sebagian</span>
+                            <span class="badge badge-pill badge-warning" data-toggle="tooltip" data-placement="top"
+                                title="Layak Sebagian">Layak Sebagian</span>
                         </td>
                         @else
                         <td>
-                            <span class="badge badge-pill badge-danger" data-toggle="tooltip" data-placement="top" title="Tidak Layak">Tidak Layak</span>
+                            <span class="badge badge-pill badge-danger" data-toggle="tooltip" data-placement="top"
+                                title="Tidak Layak">Tidak Layak</span>
                         </td>
                         @endif
                         <td>{{ indonesian_date_format($commodity->update_date) }}</td>
