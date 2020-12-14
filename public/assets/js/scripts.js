@@ -655,4 +655,9 @@ $(function() {
     $('.select2').select2({
       theme: 'bootstrap'
     });
+
+    flatpickr('input[type=date]', {
+      'locale': 'id',
+      dateFormat: 'Y-m-d',
+    });
 });
