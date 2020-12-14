@@ -1,6 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="addCommodityModal" tabindex="-1" aria-labelledby="addCommodityModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="addCommodityModal" aria-labelledby="addCommodityModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -40,8 +39,8 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="commodity_category_id">Jenis Aset</label>
-                                <select class="form-control" name="commodity_category_id" id="commodity_category_id"
-                                    required>
+                                <select class="form-control select2" name="commodity_category_id"
+                                    id="commodity_category_id" required>
                                     <option selected>Pilih..</option>
                                     @foreach($commodity_categories as $key => $commodity_category)
                                     <option value="{{ $commodity_category->id }}">{{ $commodity_category->name }}
@@ -53,8 +52,8 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="commodity_location_id">Ruangan</label>
-                                <select class="form-control" name="commodity_location_id" id="commodity_location_id"
-                                    required>
+                                <select class="form-control select2" name="commodity_location_id"
+                                    id="commodity_location_id" required>
                                     <option selected>Pilih..</option>
                                     @foreach($commodity_locations as $key => $commodity_location)
                                     <option value="{{ $commodity_location->id }}">{{ $commodity_location->name }}
@@ -66,7 +65,7 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="condition">Kondisi</label>
-                                <select class="form-control" name="condition" id="condition" required>
+                                <select class="form-control select2" name="condition" id="condition" required>
                                     <option selected>Pilih..</option>
                                     <option value="Sudah Layak">Sudah Layak</option>
                                     <option value="Layak Sebagian">Layak Sebagian</option>
@@ -87,7 +86,7 @@
                         </div>
                         <div class="col-lg-4">
                             <label for="user_id">Pengguna</label>
-                            <select class="form-control" name="user_id" id="user_id" required>
+                            <select class="form-control select2" name="user_id" id="user_id" required>
                                 <option selected>Pilih..</option>
                                 @foreach($users as $key => $user)
                                 <option value="{{ $user->id }}">{{ $user->name }}</option>

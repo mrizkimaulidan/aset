@@ -59,7 +59,7 @@
                         <td>Jenis Aset</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <select class="form-control" name="commodity_category_id" id="commodity_category_id"
+                            <select class="form-control select2" name="commodity_category_id" id="commodity_category_id"
                                 required>
                                 <option selected>Pilih..</option>
                                 @foreach($commodity_categories as $key => $commodity_category)
@@ -80,7 +80,7 @@
                         <td>Ruangan</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <select class="form-control" name="commodity_location_id" id="commodity_location_id"
+                            <select class="form-control select2" name="commodity_location_id" id="commodity_location_id"
                                 required>
                                 <option selected>Pilih..</option>
                                 @foreach($commodity_locations as $key => $commodity_location)
@@ -108,7 +108,7 @@
                     <td style="width: 145px;">Kondisi</td>
                     <td style="width: 10px;">:</td>
                     <td class="text-wrap">
-                        <select class="form-control" name="condition" id="condition" required>
+                        <select class="form-control select2" name="condition" id="condition" required>
                             <option selected>Pilih..</option>
                             <option value="Sudah Layak" {{ $commodity->condition === 'Sudah Layak' ? 'selected' : '' }}>
                                 Sudah Layak</option>
@@ -158,7 +158,7 @@
                     <td>Pengguna</td>
                     <td>:</td>
                     <td class="text-wrap">
-                        <select class="form-control" name="user_id" id="user_id" required>
+                        <select class="form-control select2" name="user_id" id="user_id" required>
                             <option selected>Pilih..</option>
                             @foreach($users as $key => $user)
                             <option value="{{ $user->id }}" {{ $commodity->user_id === $user->id ? 'selected' : '' }}>

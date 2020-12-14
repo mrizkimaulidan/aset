@@ -651,4 +651,8 @@ $(function() {
             $('#eye').attr('class', 'fas fa-eye')
         }
     });
+
+    $('.select2').select2({
+      theme: 'bootstrap'
+    });
 });

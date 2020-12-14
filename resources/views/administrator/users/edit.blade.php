@@ -45,7 +45,7 @@
                         <td>Jenis Kelamin</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <select class="form-control select2-select" name="gender" id="gender" required>
+                            <select class="form-control select2" name="gender" id="gender" required>
                                 <option selected>Pilih..</option>
                                 <option value="Laki-laki" {{ $user->gender === 'Laki-laki' ? 'selected' : '' }}>
                                     Laki-laki</option>
@@ -138,7 +138,7 @@
                     <td>Jabatan</td>
                     <td>:</td>
                     <td class="text-wrap">
-                        <select class="form-control select2-select" name="role_id" id="role_id" required>
+                        <select class="form-control select2" name="role_id" id="role_id" required>
                             <option selected>Pilih..</option>
                             @foreach($roles as $key => $role)
                             <option value="{{ $role->id }}" {{ $user->role_id === $role->id ? 'selected' : '' }}>
