@@ -27,7 +27,7 @@
                             <div class="form-group">
                                 <label for="description">Keterangan</label>
                                 <textarea class="form-control" name="description" id="description" cols="30" rows="10"
-                                    placeholder="Masukkan keterangan.."></textarea>
+                                    placeholder="Masukkan keterangan.." style="height: 100px;"></textarea>
                             </div>
                         </div>
                     </div>
