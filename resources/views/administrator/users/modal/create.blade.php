@@ -29,7 +29,7 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="gender">Jenis Kelamin</label>
-                                <select class="form-control select2" name="gender" id="gender" required>
+                                <select class="form-control" name="gender" id="gender" required>
                                     <option selected>Pilih..</option>
                                     <option value="Laki-laki">Laki-laki</option>
                                     <option value="Perempuan">Perempuan</option>
@@ -86,7 +86,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="role_id">Jabatan</label>
-                                <select class="form-control select2" name="role_id" id="role_id" required>
+                                <select class="form-control" name="role_id" id="role_id" required>
                                     <option selected>Pilih..</option>
                                     @foreach($roles as $key => $role)
                                     <option value="{{ $role->id }}">{{ $role->name }}</option>
