@@ -39,7 +39,15 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="amount">Jumlah</label>
-                                <input type="number" class="form-control" name="amount" id="amount" required>
+                                <input type="number"
+                                    class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount"
+                                    id="amount" required>
+
+                                @if($errors->has('amount'))
+                                <div class="invalid-feedback font-weight-bold d-block">
+                                    {{ $errors->first('amount') }}
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>

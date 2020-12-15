@@ -7,6 +7,7 @@ use App\Models\CommodityUpdate;
 use App\Models\CommodityCategory;
 use App\Models\CommodityLocation;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCommodityUpdateRequest;
 use App\Models\Commodity;
 
 class CommodityUpdateController extends Controller
@@ -42,7 +43,7 @@ class CommodityUpdateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCommodityUpdateRequest $request)
     {
         $commodity_update = new CommodityUpdate();
         $commodity_update->commodity_id = $request->commodity_id;
