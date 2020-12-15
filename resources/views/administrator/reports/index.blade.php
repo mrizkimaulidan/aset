@@ -13,10 +13,6 @@
                             <i class="fas fa-print"></i>
                         </span>
                     </button>
-
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addReportModal">
-                        Tambah Data
-                    </button>
                 </div>
             </div>
             <table id="datatable" class="table table-striped table-bordered">
