@@ -660,4 +660,10 @@ $(function() {
       'locale': 'id',
       dateFormat: 'Y-m-d',
     });
+
+    $('.clear-input').on('click', function () {
+        $('.select2-select').val(null).trigger('change');
+        $('input:not([name=_method], [name=_token])').val('');
+        $('textarea').val('');
+    });
 });
