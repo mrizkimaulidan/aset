@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Administrator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
 use App\Models\User;
 use File;
@@ -46,7 +48,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, User $user)
+    public function store(StoreUserRequest $request, User $user)
     {
         $user = new User();
         $user->role_id = $request->role_id;
@@ -56,7 +58,7 @@ class UserController extends Controller
         $user->gender = $request->gender;
         $user->phone_number = $request->phone_number;
         $user->photo = $this->fileUpload->uploadProfilePicture($request);
-        $user->password = $request->password;
+        $user->password = bcrypt($request->password);
         $user->save();
 
         return redirect()->route('admin.pengguna.index')->with('success', 'Data pengguna berhasil ditambahkan!');
@@ -94,7 +96,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
         $user = User::findOrFail($id);
 
