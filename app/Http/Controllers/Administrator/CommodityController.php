@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Administrator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCommodityRequest;
+use App\Http\Requests\UpdateCommodityRequest;
 use App\Models\Commodity;
 use App\Models\CommodityCategory;
 use App\Models\CommodityLocation;
@@ -42,7 +44,7 @@ class CommodityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCommodityRequest $request)
     {
         $commodity = new Commodity();
         $commodity->user_id = $request->user_id;
@@ -93,7 +95,7 @@ class CommodityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCommodityRequest $request, $id)
     {
         $commodity = Commodity::findOrFail($id);
         $commodity->user_id = $request->user_id;
