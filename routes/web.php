@@ -30,18 +30,18 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 
 Route::middleware(['auth'])->name('admin.')->group(function () {
     Route::middleware(['admin'])->group(function () {
-        Route::resource('/pengguna', UserController::class);
-        Route::resource('/jenis-aset', CommodityCategoryController::class);
-        Route::resource('/ruangan', CommodityLocationController::class);
-        Route::resource('/aset', CommodityController::class);
+        Route::resource('/pengguna', UserController::class)->except('create', 'show');
+        Route::resource('/jenis-aset', CommodityCategoryController::class)->except('create', 'show', 'edit');
+        Route::resource('/ruangan', CommodityLocationController::class)->except('create', 'show', 'edit');
+        Route::resource('/aset', CommodityController::class)->except('create', 'show');
 
         Route::get('/jenis-aset/json/{id}', [App\Http\Controllers\Administrator\Json\CommodityCategoryController::class, 'show']);
         Route::get('/ruangan/json/{id}', [App\Http\Controllers\Administrator\Json\CommodityLocationController::class, 'show']);
     });
 
     Route::middleware(['administrative.staff'])->group(function () {
-        Route::resource('/ubah-aset', CommodityUpdateController::class);
-        Route::resource('/laporan', ReportController::class);
+        Route::resource('/ubah-aset', CommodityUpdateController::class)->only('index', 'store');
+        Route::resource('/laporan', ReportController::class)->only('index');
         Route::get('/laporan/ubah-aset/print/', [App\Http\Controllers\AdministrativeStaff\PrintController::class, 'print'])->name('laporan.ubah-aset.print');
         Route::get('/aset/json/{id}', [App\Http\Controllers\AdministrativeStaff\Json\CommodityController::class, 'show']);
     });
