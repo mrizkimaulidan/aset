@@ -22,24 +22,29 @@ use App\Http\Controllers\Administrator\ReportController;
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->middleware(['redirect.if.login.true']);
 
 Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
-Route::name('admin.')->group(function () {
-    Route::resource('/pengguna', UserController::class);
-    Route::resource('/jenis-aset', CommodityCategoryController::class);
-    Route::resource('/ruangan', CommodityLocationController::class);
-    Route::resource('/aset', CommodityController::class);
-    Route::resource('/laporan', ReportController::class);
-    Route::resource('/ubah-aset', CommodityUpdateController::class);
+Route::middleware(['auth'])->name('admin.')->group(function () {
+    Route::middleware(['admin'])->group(function () {
+        Route::resource('/pengguna', UserController::class);
+        Route::resource('/jenis-aset', CommodityCategoryController::class);
+        Route::resource('/ruangan', CommodityLocationController::class);
+        Route::resource('/aset', CommodityController::class);
 
-    Route::get('/jenis-aset/json/{id}', [App\Http\Controllers\Administrator\Json\CommodityCategoryController::class, 'show']);
-    Route::get('/ruangan/json/{id}', [App\Http\Controllers\Administrator\Json\CommodityLocationController::class, 'show']);
-    Route::get('/aset/json/{id}', [App\Http\Controllers\AdministrativeStaff\Json\CommodityController::class, 'show']);
+        Route::get('/jenis-aset/json/{id}', [App\Http\Controllers\Administrator\Json\CommodityCategoryController::class, 'show']);
+        Route::get('/ruangan/json/{id}', [App\Http\Controllers\Administrator\Json\CommodityLocationController::class, 'show']);
+    });
+
+    Route::middleware(['administrative.staff'])->group(function () {
+        Route::resource('/ubah-aset', CommodityUpdateController::class);
+        Route::resource('/laporan', ReportController::class);
+        Route::get('/laporan/ubah-aset/print/', [App\Http\Controllers\AdministrativeStaff\PrintController::class, 'print'])->name('laporan.ubah-aset.print');
+        Route::get('/aset/json/{id}', [App\Http\Controllers\AdministrativeStaff\Json\CommodityController::class, 'show']);
+    });
 
     Route::get('/laporan/print/{year}', [PrintController::class, 'printByYear'])->name('laporan.print.year');
-    Route::get('/laporan/ubah-aset/print/', [App\Http\Controllers\AdministrativeStaff\PrintController::class, 'print'])->name('laporan.ubah-aset.print');
 });
