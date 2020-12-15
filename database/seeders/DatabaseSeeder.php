@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             CommodityCategorySeeder::class,
             CommodityLocationSeeder::class,
             CommoditySeeder::class,
+            CommodityUpdateSeeder::class,
         ]);
     }
 }

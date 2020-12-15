@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdministrativeStaff\CommodityUpdateController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Administrator\UserController;
 use App\Http\Controllers\Administrator\CommodityCategoryController;
@@ -33,9 +34,12 @@ Route::name('admin.')->group(function () {
     Route::resource('/ruangan', CommodityLocationController::class);
     Route::resource('/aset', CommodityController::class);
     Route::resource('/laporan', ReportController::class);
+    Route::resource('/ubah-aset', CommodityUpdateController::class);
 
     Route::get('/jenis-aset/json/{id}', [App\Http\Controllers\Administrator\Json\CommodityCategoryController::class, 'show']);
     Route::get('/ruangan/json/{id}', [App\Http\Controllers\Administrator\Json\CommodityLocationController::class, 'show']);
+    Route::get('/aset/json/{id}', [App\Http\Controllers\AdministrativeStaff\Json\CommodityController::class, 'show']);
 
     Route::get('/laporan/print/{year}', [PrintController::class, 'printByYear'])->name('laporan.print.year');
+    Route::get('/laporan/ubah-aset/print/', [App\Http\Controllers\AdministrativeStaff\PrintController::class, 'print'])->name('laporan.ubah-aset.print');
 });
