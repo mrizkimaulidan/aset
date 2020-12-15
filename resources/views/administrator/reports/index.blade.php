@@ -27,7 +27,9 @@
                         <th>Kondisi</th>
                         <th>Tanggal Update</th>
                         <th>Pengguna</th>
+                        @if (auth()->user()->role_id === 1)
                         <th>Aksi</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -57,6 +59,7 @@
                         @endif
                         <td>{{ indonesian_date_format($commodity->update_date) }}</td>
                         <td>{{ $commodity->users->name }}</td>
+                        @if(auth()->user()->role_id === 1)
                         <td>
                             <div class="btn-group btn-group-justified">
                                 <a href="{{ route('admin.aset.edit', $commodity->id) }}" class="btn btn-success btn-sm">
@@ -70,6 +73,7 @@
                                 </form>
                             </div>
                         </td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>
