@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Administrator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCommodityCategoryRequest;
+use App\Http\Requests\UpdateCommodityCategoryRequest;
 use App\Models\CommodityCategory;
 use Illuminate\Http\Request;
 
@@ -36,7 +38,7 @@ class CommodityCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCommodityCategoryRequest $request)
     {
         $commodity_category = new CommodityCategory();
         $commodity_category->name = $request->name;
@@ -75,7 +77,7 @@ class CommodityCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCommodityCategoryRequest $request, $id)
     {
         $commodity_category = CommodityCategory::findOrFail($id);
         $commodity_category->name = $request->name_edit;
