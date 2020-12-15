@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Administrator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCommodityLocationRequest;
+use App\Http\Requests\UpdateCommodityLocationRequest;
 use App\Models\CommodityLocation;
 use Illuminate\Http\Request;
 
@@ -36,7 +38,7 @@ class CommodityLocationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCommodityLocationRequest $request)
     {
         $commodity_location = new CommodityLocation();
         $commodity_location->name = $request->name;
@@ -75,7 +77,7 @@ class CommodityLocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCommodityLocationRequest $request, $id)
     {
         $commodity_location = CommodityLocation::findOrFail($id);
         $commodity_location->name = $request->name_edit;
