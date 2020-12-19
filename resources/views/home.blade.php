@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <h4>Jumlah Pengguna</h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body count">
                     {{ count($users) }}
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 <div class="card-header">
                     <h4>Jenis Aset</h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body count">
                     {{ count($commodity_categories) }}
                 </div>
             </div>
@@ -47,7 +47,7 @@
                 <div class="card-header">
                     <h4>Jumlah Ruangan</h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body count">
                     {{ count($commodity_locations) }}
                 </div>
             </div>
@@ -64,7 +64,7 @@
                 <div class="card-header">
                     <h4>Jumlah Aset</h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body count">
                     {{ count($commodities) }}
                 </div>
             </div>

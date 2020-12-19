@@ -666,4 +666,21 @@ $(function() {
         $('input:not([name=_method], [name=_token])').val('');
         $('textarea').val('');
     });
+
+    $(".count").each(function() {
+        $(this)
+            .prop("Counter", 0)
+            .animate(
+                {
+                    Counter: $(this).text()
+                },
+                {
+                    duration: 700,
+                    easing: "swing",
+                    step: function(now) {
+                        $(this).text(Math.ceil(now));
+                    }
+                }
+            );
+    });
 });
