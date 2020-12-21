@@ -6,10 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCommodityCategoryRequest;
 use App\Http\Requests\UpdateCommodityCategoryRequest;
 use App\Models\CommodityCategory;
+use App\Repositories\CommodityCategoryRepository;
 use Illuminate\Http\Request;
 
 class CommodityCategoryController extends Controller
 {
+    private $commodityCategoryRepository;
+
+    public function __construct(CommodityCategoryRepository $commodityCategoryRepository)
+    {
+        $this->commodityCategoryRepository = $commodityCategoryRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,19 +25,9 @@ class CommodityCategoryController extends Controller
      */
     public function index()
     {
-        $commodity_categories = CommodityCategory::orderBy('name', 'asc')->get();
-
-        return view('administrator.commodity_categories.index', compact('commodity_categories'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('administrator.commodity_categories.index', [
+            'commodity_categories' => $this->commodityCategoryRepository->getCommodityCategoryOrderBy('name')->get()
+        ]);
     }
 
     /**
@@ -40,34 +38,9 @@ class CommodityCategoryController extends Controller
      */
     public function store(StoreCommodityCategoryRequest $request)
     {
-        $commodity_category = new CommodityCategory();
-        $commodity_category->name = $request->name;
-        $commodity_category->description = $request->description;
-        $commodity_category->save();
+        $this->commodityCategoryRepository->store($request);
 
         return redirect()->route('admin.jenis-aset.index')->with('success', 'Data jenis aset berhasil ditambahkan!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        // 
     }
 
     /**
@@ -79,10 +52,7 @@ class CommodityCategoryController extends Controller
      */
     public function update(UpdateCommodityCategoryRequest $request, $id)
     {
-        $commodity_category = CommodityCategory::findOrFail($id);
-        $commodity_category->name = $request->name_edit;
-        $commodity_category->description = $request->description_edit;
-        $commodity_category->save();
+        $this->commodityCategoryRepository->update($request, $id);
 
         return redirect()->route('admin.jenis-aset.index')->with('success', 'Data jenis aset berhasil ditambahkan!');
     }
@@ -95,7 +65,7 @@ class CommodityCategoryController extends Controller
      */
     public function destroy($id)
     {
-        CommodityCategory::findOrFail($id)->delete();
+        $this->commodityCategoryRepository->delete($id);
 
         return redirect()->route('admin.jenis-aset.index')->with('success', 'Data jenis aset berhasil dihapus!');
     }
