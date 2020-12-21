@@ -9,10 +9,27 @@ use App\Models\Commodity;
 use App\Models\CommodityCategory;
 use App\Models\CommodityLocation;
 use App\Models\User;
+use App\Repositories\CommodityCategoryRepository;
+use App\Repositories\CommodityLocationRepository;
+use App\Repositories\CommodityRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 class CommodityController extends Controller
 {
+    private $commodityRepository,
+        $commodityCategoryRepository,
+        $commodityLocationRepository,
+        $userRepository;
+
+    public function __construct(CommodityRepository $commodityRepository, CommodityCategoryRepository $commodityCategoryRepository, CommodityLocationRepository $commodityLocationRepository, UserRepository $userRepository)
+    {
+        $this->commodityRepository = $commodityRepository;
+        $this->commodityCategoryRepository = $commodityCategoryRepository;
+        $this->commodityLocationRepository = $commodityLocationRepository;
+        $this->userRepository = $userRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,22 +37,12 @@ class CommodityController extends Controller
      */
     public function index()
     {
-        $commodities = Commodity::with('commodity_categories', 'commodity_locations')->orderBy('name', 'asc')->get();
-        $commodity_categories = CommodityCategory::orderBy('name', 'asc')->get();
-        $commodity_locations = CommodityLocation::orderBy('name', 'asc')->get();
-        $users = User::orderBy('name', 'asc')->get();
-
-        return view('administrator.commodities.index', compact('commodities', 'commodity_categories', 'commodity_locations', 'users'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('administrator.commodities.index', [
+            'commodities' => $this->commodityRepository->getCommodityOrderBy('name')->get(),
+            'commodity_categories' => $this->commodityCategoryRepository->getCommodityCategoryOrderBy('name')->get(),
+            'commodity_locations' => $this->commodityLocationRepository->getCommodityLocationOrderBy('name')->get(),
+            'users' => $this->userRepository->getUserOrderBy('name')->get()
+        ]);
     }
 
     /**
@@ -46,30 +53,9 @@ class CommodityController extends Controller
      */
     public function store(StoreCommodityRequest $request)
     {
-        $commodity = new Commodity();
-        $commodity->user_id = $request->user_id;
-        $commodity->commodity_category_id = $request->commodity_category_id;
-        $commodity->commodity_location_id = $request->commodity_location_id;
-        $commodity->unique_commodity_number = $request->unique_commodity_number;
-        $commodity->name = $request->name;
-        $commodity->amount = $request->amount;
-        $commodity->register_date = $request->register_date;
-        $commodity->update_date = $request->update_date;
-        $commodity->condition = $request->condition;
-        $commodity->save();
+        $this->commodityRepository->store($request);
 
         return redirect()->route('admin.aset.index')->with('success', 'Data aset berhasil ditambahkan!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -80,12 +66,12 @@ class CommodityController extends Controller
      */
     public function edit($id)
     {
-        $commodity = Commodity::findOrFail($id);
-        $commodity_categories = CommodityCategory::orderBy('name', 'asc')->get();
-        $commodity_locations = CommodityLocation::orderBy('name', 'asc')->get();
-        $users = User::orderBy('name', 'asc')->get();
-
-        return view('administrator.commodities.edit', compact('commodity', 'commodity_categories', 'commodity_locations', 'users'));
+        return view('administrator.commodities.edit', [
+            'commodity' => $this->commodityRepository->commodityFind($id),
+            'commodity_categories' => $this->commodityCategoryRepository->getCommodityCategoryOrderBy('name')->get(),
+            'commodity_locations' => $this->commodityLocationRepository->getCommodityLocationOrderBy('name')->get(),
+            'users' => $this->userRepository->getUserOrderBy('name')->get()
+        ]);
     }
 
     /**
@@ -97,17 +83,7 @@ class CommodityController extends Controller
      */
     public function update(UpdateCommodityRequest $request, $id)
     {
-        $commodity = Commodity::findOrFail($id);
-        $commodity->user_id = $request->user_id;
-        $commodity->commodity_category_id = $request->commodity_category_id;
-        $commodity->commodity_location_id = $request->commodity_location_id;
-        $commodity->unique_commodity_number = $request->unique_commodity_number;
-        $commodity->name = $request->name;
-        $commodity->amount = $request->amount;
-        $commodity->register_date = $request->register_date;
-        $commodity->update_date = $request->update_date;
-        $commodity->condition = $request->condition;
-        $commodity->save();
+        $this->commodityRepository->update($request, $id);
 
         return redirect()->route('admin.aset.edit', $id)->with('success', 'Data aset berhasil diubah!');
     }
@@ -120,7 +96,7 @@ class CommodityController extends Controller
      */
     public function destroy($id)
     {
-        Commodity::findOrFail($id)->delete();
+        $this->commodityRepository->commodityFind($id)->delete();
 
         return redirect()->route('admin.aset.index')->with('success', 'Data aset berhasil dihapus!');
     }
