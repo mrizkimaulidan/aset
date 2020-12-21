@@ -8,9 +8,26 @@ use Illuminate\Http\Request;
 use App\Models\CommodityCategory;
 use App\Models\CommodityLocation;
 use App\Http\Controllers\Controller;
+use App\Repositories\CommodityCategoryRepository;
+use App\Repositories\CommodityLocationRepository;
+use App\Repositories\CommodityRepository;
+use App\Repositories\UserRepository;
 
 class ReportController extends Controller
 {
+    private $commodityRepository,
+        $commodityCategoryRepository,
+        $commodityLocationRepository,
+        $userRepository;
+
+    public function __construct(CommodityRepository $commodityRepository, CommodityCategoryRepository $commodityCategoryRepository, CommodityLocationRepository $commodityLocationRepository, UserRepository $userRepository)
+    {
+        $this->commodityRepository = $commodityRepository;
+        $this->commodityCategoryRepository = $commodityCategoryRepository;
+        $this->commodityLocationRepository = $commodityLocationRepository;
+        $this->userRepository = $userRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,77 +35,11 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $commodities = Commodity::with('commodity_categories', 'commodity_locations')->whereYear('register_date', date('Y'))->orderBy('name', 'asc')->get();
-        $commodity_categories = CommodityCategory::orderBy('name', 'asc')->get();
-        $commodity_locations = CommodityLocation::orderBy('name', 'asc')->get();
-        $users = User::orderBy('name', 'asc')->get();
-
-        return view('administrator.reports.index', compact('commodities', 'commodity_categories', 'commodity_locations', 'users'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('administrator.reports.index', [
+            'commodities' => $this->commodityRepository->getCommodityOrderBy('name')->get(),
+            'commodity_categories' => $this->commodityCategoryRepository->getCommodityCategoryOrderBy('name')->get(),
+            'commodity_locations' => $this->commodityLocationRepository->getCommodityLocationOrderBy('name')->get(),
+            'users' => $this->userRepository->getUserOrderBy('name')->get(),
+        ]);
     }
 }
