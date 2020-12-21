@@ -6,10 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCommodityLocationRequest;
 use App\Http\Requests\UpdateCommodityLocationRequest;
 use App\Models\CommodityLocation;
+use App\Repositories\CommodityLocationRepository;
 use Illuminate\Http\Request;
 
 class CommodityLocationController extends Controller
 {
+    private $commodityLocationRepository;
+
+    public function __construct(CommodityLocationRepository $commodityLocationRepository)
+    {
+        $this->commodityLocationRepository = $commodityLocationRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,19 +25,9 @@ class CommodityLocationController extends Controller
      */
     public function index()
     {
-        $commodity_locations = CommodityLocation::orderBy('name', 'asc')->get();
-
-        return view('administrator.commodity_locations.index', compact('commodity_locations'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('administrator.commodity_locations.index', [
+            'commodity_locations' => $this->commodityLocationRepository->getCommodityLocationOrderBy('name')->get()
+        ]);
     }
 
     /**
@@ -40,34 +38,9 @@ class CommodityLocationController extends Controller
      */
     public function store(StoreCommodityLocationRequest $request)
     {
-        $commodity_location = new CommodityLocation();
-        $commodity_location->name = $request->name;
-        $commodity_location->description = $request->description;
-        $commodity_location->save();
+        $this->commodityLocationRepository->store($request);
 
         return redirect()->route('admin.ruangan.index')->with('success', 'Data ruangan berhasil ditambahkan!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -79,10 +52,7 @@ class CommodityLocationController extends Controller
      */
     public function update(UpdateCommodityLocationRequest $request, $id)
     {
-        $commodity_location = CommodityLocation::findOrFail($id);
-        $commodity_location->name = $request->name_edit;
-        $commodity_location->description = $request->description_edit;
-        $commodity_location->save();
+        $this->commodityLocationRepository->update($request, $id);
 
         return redirect()->route('admin.ruangan.index')->with('success', 'Data ruangan berhasil diubah!');
     }
@@ -95,7 +65,7 @@ class CommodityLocationController extends Controller
      */
     public function destroy($id)
     {
-        CommodityLocation::findOrFail($id)->delete();
+        $this->commodityLocationRepository->delete($id);
 
         return redirect()->route('admin.ruangan.index')->with('success', 'Data ruangan berhasil dihapus!');
     }
