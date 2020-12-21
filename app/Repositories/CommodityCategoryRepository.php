@@ -29,6 +29,6 @@ class CommodityCategoryRepository
 
     public function delete($id)
     {
-        CommodityCategory::findOrFail($id)->delete();
+        return CommodityCategory::findOrFail($id)->delete();
     }
 }
