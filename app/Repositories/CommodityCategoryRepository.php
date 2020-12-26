@@ -11,6 +11,11 @@ class CommodityCategoryRepository
         return CommodityCategory::orderBy($column, $direction);
     }
 
+    public function findCommodityCategory($id)
+    {
+        return CommodityCategory::findOrFail($id);
+    }
+
     public function store($request)
     {
         $commodity_category = new CommodityCategory();
@@ -29,6 +34,6 @@ class CommodityCategoryRepository
 
     public function delete($id)
     {
-        return CommodityCategory::findOrFail($id)->delete();
+        return $this->findCommodityCategory($id)->delete();
     }
 }

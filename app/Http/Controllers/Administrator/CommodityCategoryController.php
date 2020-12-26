@@ -65,6 +65,10 @@ class CommodityCategoryController extends Controller
      */
     public function destroy($id)
     {
+        if ($this->commodityCategoryRepository->findCommodityCategory($id)->commodities()->exists() || $this->commodityCategoryRepository->findCommodityCategory($id)->commodity_updates()->exists()) {
+            return redirect()->route('admin.jenis-aset.index')->with('error', 'Data yang memiliki relasi tidak dapat dihapus!');
+        }
+
         $this->commodityCategoryRepository->delete($id);
 
         return redirect()->route('admin.jenis-aset.index')->with('success', 'Data jenis aset berhasil dihapus!');
