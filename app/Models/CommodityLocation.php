@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class CommodityLocation extends Model
 {
     use HasFactory;
+
+    public function commodities()
+    {
+        return $this->belongsTo(Commodity::class);
+    }
 }

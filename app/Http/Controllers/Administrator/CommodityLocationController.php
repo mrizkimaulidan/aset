@@ -65,6 +65,10 @@ class CommodityLocationController extends Controller
      */
     public function destroy($id)
     {
+        if ($this->commodityLocationRepository->findCommodityLocation($id)->commodities()) {
+            return redirect()->route('admin.ruangan.index')->with('error', 'Data yang memiliki relasi tidak dapat dihapus!');
+        }
+
         $this->commodityLocationRepository->delete($id);
 
         return redirect()->route('admin.ruangan.index')->with('success', 'Data ruangan berhasil dihapus!');
