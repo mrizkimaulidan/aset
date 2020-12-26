@@ -650,6 +650,26 @@ $(function() {
             $('#password').attr('type', 'password')
             $('#eye').attr('class', 'fas fa-eye')
         }
+      });
+
+        $('.new-show-password').on('click', function () {
+        if ($('#new_password').attr('type') === 'password') {
+            $('#new_password').attr('type', 'text')
+            $('#new_eye').attr('class', 'fas fa-eye-slash')
+        } else {
+            $('#new_password').attr('type', 'password')
+            $('#new_eye').attr('class', 'fas fa-eye')
+        }
+      });
+
+        $('.repeat-new-show-password').on('click', function () {
+        if ($('#repeat_new_password').attr('type') === 'password') {
+            $('#repeat_new_password').attr('type', 'text')
+            $('#repeat_new_eye').attr('class', 'fas fa-eye-slash')
+        } else {
+            $('#repeat_new_password').attr('type', 'password')
+            $('#repeat_new_eye').attr('class', 'fas fa-eye')
+        }
     });
 
     $('select').select2({

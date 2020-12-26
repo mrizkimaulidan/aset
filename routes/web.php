@@ -8,6 +8,7 @@ use App\Http\Controllers\Administrator\CommodityController;
 use App\Http\Controllers\Administrator\CommodityLocationController;
 use App\Http\Controllers\Administrator\PrintController;
 use App\Http\Controllers\Administrator\ReportController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,4 +48,5 @@ Route::middleware(['auth'])->name('admin.')->group(function () {
     });
 
     Route::get('/laporan/print/{year}', [PrintController::class, 'printByYear'])->name('laporan.print.year');
+    Route::patch('/profil/edit', [HomeController::class, 'updateProfile'])->name('home.profile.edit');
 });

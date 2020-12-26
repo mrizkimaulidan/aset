@@ -79,4 +79,25 @@ class UserRepository
 
         $user->delete();
     }
+
+    public function updateProfile($request)
+    {
+        $user = $this->getUserById(auth()->user()->id);
+
+        if ($request->new_password !== null) {
+            $user->password = bcrypt($request->new_password);
+        }
+
+        if (!empty($request->file('photo'))) {
+            if (File::exists(public_path($user->photo))) {
+                File::delete(public_path($user->photo));
+            }
+        }
+
+        if ($request->file('photo') !== null) {
+            $user->photo = $this->fileUploadController->uploadProfilePicture($request);
+        }
+
+        $user->save();
+    }
 }

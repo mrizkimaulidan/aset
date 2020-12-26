@@ -12,9 +12,9 @@
       </a>
       <div class="dropdown-menu dropdown-menu-right">
         <div class="dropdown-title">{{ auth()->user()->roles->name }}</div>
-        {{-- <a href="features-profile.html" class="dropdown-item has-icon">
-          <i class="far fa-user"></i> Profile
-        </a> --}}
+        <a href="" class="dropdown-item has-icon" data-toggle="modal" data-target="#profileModal">
+          <i class="far fa-user"></i> Profil
+        </a>
         <div class="dropdown-divider"></div>
         <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
