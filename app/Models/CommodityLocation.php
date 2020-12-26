@@ -11,6 +11,6 @@ class CommodityLocation extends Model
 
     public function commodities()
     {
-        return $this->belongsTo(Commodity::class);
+        return $this->hasOne(Commodity::class);
     }
 }
