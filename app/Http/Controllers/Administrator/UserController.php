@@ -7,16 +7,19 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
 use App\Models\User;
+use App\Repositories\UserRepository;
 use File;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    protected $fileUpload;
+    protected $fileUpload,
+        $userRepository;
 
-    public function __construct(FileUploadController $fileUpload)
+    public function __construct(FileUploadController $fileUpload, UserRepository $userRepository)
     {
         $this->fileUpload = $fileUpload;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -26,20 +29,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('roles')->orderBy('name', 'asc')->get();
-        $roles = Role::orderBy('name', 'asc')->get();
-
-        return view('administrator.users.index', compact('users', 'roles'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('administrator.users.index', [
+            'users' => $this->userRepository->getUserOrderBy('name')->get(),
+            'roles' => $this->userRepository->getRoleOrderBy('name')->get()
+        ]);
     }
 
     /**
@@ -50,29 +43,9 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request, User $user)
     {
-        $user = new User();
-        $user->role_id = $request->role_id;
-        $user->unique_user_number = $request->unique_user_number;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->gender = $request->gender;
-        $user->phone_number = $request->phone_number;
-        $user->photo = $this->fileUpload->uploadProfilePicture($request);
-        $user->password = bcrypt($request->password);
-        $user->save();
+        $this->userRepository->store($request);
 
         return redirect()->route('admin.pengguna.index')->with('success', 'Data pengguna berhasil ditambahkan!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -83,10 +56,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-        $roles = Role::orderBy('name', 'asc')->get();
-
-        return view('administrator.users.edit', compact('user', 'roles'));
+        return view('administrator.users.edit', [
+            'user' => $this->userRepository->getUserById($id),
+            'roles' => $this->userRepository->getRoleOrderBy('name')->get()
+        ]);
     }
 
     /**
@@ -98,26 +71,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, $id)
     {
-        $user = User::findOrFail($id);
-
-        if (!empty($request->file('photo'))) {
-            if (File::exists(public_path($user->photo))) {
-                File::delete(public_path($user->photo));
-            }
-        }
-
-        if ($request->file('photo') !== null) {
-            $user->photo = $this->fileUpload->uploadProfilePicture($request);
-        }
-
-        $user->role_id = $request->role_id;
-        $user->unique_user_number = $request->unique_user_number;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->gender = $request->gender;
-        $user->phone_number = $request->phone_number;
-        $user->password = $request->password;
-        $user->save();
+        $this->userRepository->update($request, $id);
 
         return redirect()->route('admin.pengguna.edit', $id)->with('success', 'Data pengguna berhasil diubah!');
     }
@@ -130,13 +84,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-
-        if (File::exists(public_path($user->photo))) {
-            File::delete(public_path($user->photo));
-        }
-
-        $user->delete();
+        $this->userRepository->delete($id);
 
         return redirect()->route('admin.pengguna.index')->with('success', 'Data pengguna berhasil dihapus!');
     }
