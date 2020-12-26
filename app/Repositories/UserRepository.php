@@ -23,7 +23,7 @@ class UserRepository
 
     public function getRoleOrderBy($column, $direction = 'asc')
     {
-        return Role::orderBy('name', $direction);
+        return Role::orderBy($column, $direction);
     }
 
     public function store($request)
