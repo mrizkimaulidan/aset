@@ -41,7 +41,7 @@ class HomeController extends Controller
         return view('home', compact('users', 'commodity_categories', 'commodity_locations', 'commodities'));
     }
 
-    public function updateProfile(Request $request)
+    public function updateProfile(UpdateUserProfileRequest $request)
     {
         $this->userRepository->updateProfile($request);
 

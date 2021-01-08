@@ -24,16 +24,16 @@ class UpdateUserProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'old_password' => 'required',
-            'new_password' => 'required|min:5|max:191|same:repeat_new_password',
-            'repeat_new_password' => 'required|min:5|max:191'
+            'photo' => 'image',
+            'new_password' => 'required|min:6|max:191|same:repeat_new_password',
+            'repeat_new_password' => 'required|min:6|max:191'
         ];
     }
 
     public function messages()
     {
         return [
-            'old_password.required' => 'Kolom password lama wajib diisi!',
+            'photo' => 'Kolom foto harus gambar!',
 
             'new_password.required' => 'Kolom password baru wajib diisi!',
             'new_password.min' => 'Kolom password baru minimal :min karakter!',
