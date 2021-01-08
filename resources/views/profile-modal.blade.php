@@ -20,7 +20,7 @@
                                     <input type="file"
                                         class="custom-file-input{{ $errors->has('photo') ? ' is-invalid' : '' }}"
                                         name="photo" id="photo">
-                                    <label class="custom-file-label">Pilih file...</label>
+                                    <label class="custom-file-label" id="custom-file-label">Pilih file...</label>
 
                                     @if($errors->has('photo'))
                                     <div class="invalid-feedback font-weight-bold d-block">
@@ -47,6 +47,7 @@
                                     </div>
                                     @endif
                                 </div>
+                                <small class="text-muted">Password baru minimal 6 karakter!</small>
                             </div>
                             <div class="form-group">
                                 <label for="repeat_new_password">Ulangi Password Baru</label>
@@ -67,6 +68,7 @@
                                     </div>
                                     @endif
                                 </div>
+                                <small class="text-muted">Ulangi password harus sama dengan password baru!</small>
                             </div>
                         </div>
                     </div>
