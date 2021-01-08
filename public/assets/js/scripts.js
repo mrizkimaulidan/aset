@@ -706,9 +706,23 @@ $(function () {
 
   $("input[type=file]").change(function (e) {
     if (e.target.files.length != 1) {
+      let oldImageUrl = $("#old-image-hidden").val();
+
+      $("#image-preview").attr("src", oldImageUrl)
       $("#custom-file-label").html("Pilih file..");
     } else {
       let fileName = e.target.files[0].name;
+      let file = $("input[type=file]").get(0).files[0];
+
+      if (file) {
+        let reader = new FileReader();
+        reader.onload = () => {
+          $("#image-preview").attr("src", reader.result);
+        }
+
+        reader.readAsDataURL(file)
+      }
+
       $("#custom-file-label").html(fileName);
     }
   });

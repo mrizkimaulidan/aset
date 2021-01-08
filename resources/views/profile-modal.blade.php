@@ -15,7 +15,8 @@
                         <div class="col-lg-12">
                             <div class="form-group text-center ">
                                 <img src="{{ asset(auth()->user()->photo) }}" class="img-thumbnail"
-                                    alt="{{ auth()->user()->name }}" style="height: 100px;">
+                                    alt="{{ auth()->user()->name }}" id="image-preview" style="height: 100px;">
+                                <input type="hidden" value="{{ asset(auth()->user()->photo) }}" id="old-image-hidden">
                                 <div class="custom-file mt-2">
                                     <input type="file"
                                         class="custom-file-input{{ $errors->has('photo') ? ' is-invalid' : '' }}"
