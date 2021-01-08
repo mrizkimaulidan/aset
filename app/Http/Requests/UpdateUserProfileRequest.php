@@ -25,8 +25,8 @@ class UpdateUserProfileRequest extends FormRequest
     {
         return [
             'photo' => 'image',
-            'new_password' => 'required|min:6|max:191|same:repeat_new_password',
-            'repeat_new_password' => 'required|min:6|max:191'
+            'new_password' => 'nullable|min:6|max:191|same:repeat_new_password',
+            'repeat_new_password' => 'nullable|min:6|max:191'
         ];
     }
 
