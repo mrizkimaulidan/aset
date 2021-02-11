@@ -6,7 +6,7 @@
 
 <body>
     <div align="center">
-        <img src="#" width="10%">
+        <img src="{{ asset('assets/images/logo.png') }}" width="10%">
 
         <h3>Laporan Data Aset</h3>
         <h3>SMK SAHIDA LEMAHABANG</h3>
