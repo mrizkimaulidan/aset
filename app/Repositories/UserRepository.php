@@ -56,7 +56,7 @@ class UserRepository
         }
 
         if ($request->file('photo') !== null) {
-            $user->photo = $this->fileUpload->uploadProfilePicture($request);
+            $user->photo = $this->fileUploadController->uploadProfilePicture($request);
         }
 
         $user->role_id = $request->role_id;
